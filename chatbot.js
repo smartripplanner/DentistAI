@@ -771,8 +771,9 @@ class ChatbotEngine {
           return { reply: this.t('invalidPhone'), chips: [] };
         }
         this.tempData.phone = text;
-        this.state = BOT_STATES.BOOK_EMAIL;
-        return { reply: this.t('askEmail'), chips: [] };
+        this.tempData.email = "Not Provided";
+        this.state = BOT_STATES.BOOK_DATE;
+        return { reply: this.t('askDate'), chips: ["Tomorrow", "In 2 Days", "Next Monday"] };
         
       case BOT_STATES.BOOK_EMAIL:
         if (!this.validateEmail(text)) {
