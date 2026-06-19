@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Dental Care & DentalAI Assistant</title>
+  <meta name="description" content="Apex Dental Care offers premium, state-of-the-art dental treatments. Book appointments, ask questions, or triage dental emergencies instantly with DentalAI.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="glass">
+    <a href="#" class="logo">
+      <div class="logo-icon config-logoURL">🦷</div>
+      <div class="logo-text config-clinicName">Apex Dental</div>
+    </a>
+    
+    <div class="nav-tabs" id="view-toggles">
+      <button class="nav-tab active" data-target="patient-site">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Patient Portal
+      </button>
+      <button class="nav-tab" data-target="admin-dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        Staff Portal
+      </button>
+    </div>
+
+    <div>
+      <button class="btn btn-outline" id="theme-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        Dark Mode
+      </button>
+    </div>
+  </header>
+
+  <!-- PATIENT CLINIC PORTAL -->
+  <main id="patient-site">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-tag config-tagline">Welcome to Premier Care</div>
+        <h1 class="hero-title">Experience Gentle, <span class="config-clinicName">State-of-the-Art</span> Dental Care</h1>
+        <p class="hero-desc config-clinicDescription">Apex Dental Care combines clinical excellence with advanced comfort technologies. Chat with DentalAI, our virtual assistant, to book your visit or resolve queries instantly.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="hero-book-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book Appointment
+          </button>
+          <a href="#treatments-section" class="btn btn-outline">Explore Treatments</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-circle"></div>
+        <div class="hero-card">
+          <h3 class="config-clinicName">Apex Dental Care</h3>
+          <div class="clinic-quick-info">
+            <div class="info-item">
+              <div class="info-label">Clinic Hours</div>
+              <div class="info-value config-workingHours">Mon - Sat: 9 AM - 8 PM</div>
+              <div id="live-status-badge" style="margin-top: 0.25rem;"></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Emergency Line</div>
+              <div class="info-value config-emergencyPhone">+91 98765 43210</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Languages</div>
+              <div class="info-value">English, Hindi, Marathi</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Booking & Info</div>
+              <div class="info-value config-bookingInstructions" style="font-size:0.75rem; font-weight:normal; line-height:1.2; max-height:48px; overflow:hidden;">Complimentary Valet Parking</div>
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--text-muted);" class="config-address">📍 Ground Floor, Zenith Plaza, Bandra West, Mumbai</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES / TREATMENTS SECTION -->
+    <section class="services-section" id="treatments-section">
+      <div class="section-header">
+        <h2 class="section-title">Our Premium Treatments</h2>
+        <p class="section-desc">We offer advanced restorative, cosmetic, and general dental care using the latest technology and gentle techniques.</p>
+      </div>
+
+      <div class="services-grid" id="services-grid">
+        <!-- Dental Cleaning -->
+        <div class="service-card" data-treatment="Dental Cleaning">
+          <div class="service-icon">🪥</div>
+          <h3 class="service-name">Dental Cleaning</h3>
+          <p class="service-desc">Professional prophylaxis removing plaque, tartar, and surface stains to prevent cavities and gum disease.</p>
+          <div class="service-price">₹1,500 <span class="price-tag">onwards</span></div>
+        </div>
+        <!-- Teeth Whitening -->
+        <div class="service-card" data-treatment="Teeth Whitening">
+          <div class="service-icon">✨</div>
+          <h3 class="service-name">Teeth Whitening</h3>
+          <p class="service-desc">Safe, professional laser bleaching that brightens your smile by up to 8 shades in a single session.</p>
+          <div class="service-price">₹6,000 <span class="price-tag">onwards</span></div>
+        </div>
+        <!-- Invisalign -->
+        <div class="service-card premium" data-treatment="Invisalign">
+          <div class="service-icon">💎</div>
+          <h3 class="service-name">Invisalign® Clear Aligners</h3>
+          <p class="service-desc">Virtually invisible, removable clear aligners to straighten your teeth comfortably without metal wires.</p>
+          <div class="service-price">₹1,20,000 <span class="price-tag">onwards</span></div>
+        </div>
+        <!-- Dental Implants -->
+        <div class="service-card premium" data-treatment="Dental Implants">
+          <div class="service-icon">🦷</div>
+          <h3 class="service-name">Dental Implants</h3>
+          <p class="service-desc">Permanent, natural-looking tooth replacement that restores full function, speech, and jaw support.</p>
+          <div class="service-price">₹35,000 <span class="price-tag">onwards</span></div>
+        </div>
+        <!-- Braces -->
+        <div class="service-card" data-treatment="Braces">
+          <div class="service-icon">⛓️</div>
+          <h3 class="service-name">Orthodontic Braces</h3>
+          <p class="service-desc">Traditional ceramic or metal brackets to correct crowding, spacing, and bite alignment issues.</p>
+          <div class="service-price">₹40,000 <span class="price-tag">onwards</span></div>
+        </div>
+        <!-- Root Canal Treatment -->
+        <div class="service-card" data-treatment="Root Canal Treatment">
+          <div class="service-icon">⚡</div>
+          <h3 class="service-name">Root Canal Treatment</h3>
+          <p class="service-desc">Pain-free therapy saving infected teeth, preserving natural tooth structure and stopping toothaches.</p>
+          <div class="service-price">₹4,500 <span class="price-tag">onwards</span></div>
+        </div>
+        <!-- Veneers -->
+        <div class="service-card premium" data-treatment="Veneers">
+          <div class="service-icon">⭐</div>
+          <h3 class="service-name">Porcelain Veneers</h3>
+          <p class="service-desc">Ultra-thin, custom shells bonded to teeth for an instant Hollywood smile, fixing chips, gaps, and stains.</p>
+          <div class="service-price">₹12,000 <span class="price-tag">per tooth</span></div>
+        </div>
+        <!-- Wisdom Tooth Extraction -->
+        <div class="service-card" data-treatment="Wisdom Tooth Extraction">
+          <div class="service-icon">🩸</div>
+          <h3 class="service-name">Wisdom Tooth Extraction</h3>
+          <p class="service-desc">Safe extraction of impacted or painful wisdom teeth under gentle local anesthesia or sedation.</p>
+          <div class="service-price">₹5,000 <span class="price-tag">onwards</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLINIC GALLERY SECTION -->
+    <section class="gallery-section" id="gallery-section">
+      <div class="section-header">
+        <h2 class="section-title">Clinic Showcase</h2>
+        <p class="section-desc">Take a visual tour of our state-of-the-art dental facilities and happy smiles.</p>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Dynamic Injection -->
+      </div>
+    </section>
+
+    <!-- MEET OUR SPECIALISTS SECTION -->
+    <section class="specialists-section" id="specialists-section">
+      <div class="section-header">
+        <h2 class="section-title">Meet Our Specialists</h2>
+        <p class="section-desc">Our highly qualified medical team is dedicated to providing premium care.</p>
+      </div>
+      <div class="specialists-grid" id="specialists-grid">
+        <!-- Dynamic Injection -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="patient-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo-text config-clinicName">Apex Dental</div>
+          <p class="config-clinicDescription">Providing cutting-edge dental treatments with a gentle touch. Experience premium care in Bandra West, Mumbai.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Contact & Location</h4>
+          <p class="config-address">📍 Ground Floor, Zenith Plaza, Bandra West, Mumbai, MH - 400050</p>
+          <p>📞 Phone: <span class="config-phone">+91 98765 43210</span></p>
+          <p>✉️ Email: <span class="config-email">hello@apexdental.in</span></p>
+          <div id="clinic-map-container" style="margin-top: 1rem; border-radius: var(--radius-sm); overflow: hidden; height: 180px; width: 100%; border: 1px solid var(--border-color); display: none;"></div>
+          <a id="clinic-map-directions" href="#" target="_blank" class="btn btn-outline" style="font-size:0.75rem; padding:0.4rem; width:100%; text-align:center; margin-top:0.5rem; display:none; justify-content:center; align-items:center;">🚗 Get Directions</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul>
+            <li><a href="#">About Our Clinic</a></li>
+            <li><a href="#treatments-section">Treatment Pricing</a></li>
+            <li><a href="#">Insurance Partners</a></li>
+            <li><a href="#">Emergency Care</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 <span class="config-clinicName">Apex Dental Care</span>. All rights reserved.</div>
+        <div style="font-size: 0.8rem; color: #64748b;">Powered by DentalAI assistant</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- CLINIC CRM DASHBOARD -->
+  <section id="admin-dashboard">
+    <!-- ANALYTICS CARDS -->
+    <div class="analytics-grid">
+      <div class="analytics-card">
+        <div class="analytics-info">
+          <div class="analytics-title">Booked Appointments</div>
+          <div class="analytics-number" id="stats-appointments">0</div>
+        </div>
+        <div class="analytics-icon bookings">📅</div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-info">
+          <div class="analytics-title">Hot Leads</div>
+          <div class="analytics-number" id="stats-hot">0</div>
+        </div>
+        <div class="analytics-icon hot">🔥</div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-info">
+          <div class="analytics-title">Active Emergencies</div>
+          <div class="analytics-number" id="stats-emergencies">0</div>
+        </div>
+        <div class="analytics-icon emergencies">🚨</div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-info">
+          <div class="analytics-title">Booking Conv. Rate</div>
+          <div class="analytics-number" id="stats-conv-rate">0%</div>
+        </div>
+        <div class="analytics-icon conversion">📈</div>
+      </div>
+    </div>
+
+    <!-- MAIN CRM INTERFACE -->
+    <div class="dashboard-content">
+      <div class="dashboard-header">
+        <div class="dashboard-title-area">
+          <h2>Clinic CRM Center</h2>
+        </div>
+        <div class="dashboard-tabs" id="dashboard-filter-tabs">
+          <button class="dashboard-tab active" data-tab="appointments">Appointments</button>
+          <button class="dashboard-tab" data-tab="leads">CRM Leads <span class="tab-badge" id="badge-leads-count" style="display: none;">0</span></button>
+          <button class="dashboard-tab" data-tab="whatsapp">WhatsApp Export</button>
+          <button class="dashboard-tab" data-tab="handoffs">Live Handoffs <span class="tab-badge" id="badge-handoffs-count" style="display: none;">0</span></button>
+          <button class="dashboard-tab" data-tab="telephony">Telephony Hub <span class="tab-badge" id="badge-calls-count" style="display: none;">0</span></button>
+          <button class="dashboard-tab" data-tab="gateway">WhatsApp Hub</button>
+          <button class="dashboard-tab" data-tab="treatments">Treatments</button>
+          <button class="dashboard-tab" data-tab="specialists">Specialists</button>
+          <button class="dashboard-tab" data-tab="analytics">Analytics</button>
+          <button class="dashboard-tab" data-tab="clinic-settings">Clinic Settings</button>
+          <button class="dashboard-tab" data-tab="settings">Settings & Sync</button>
+          <button class="dashboard-tab" data-tab="logs">System Logs</button>
+          <button class="btn btn-outline" id="dashboard-login-btn" style="margin-left: auto; padding: 0.35rem 0.75rem; font-size: 0.75rem; height: auto; border-color: var(--primary);">🔐 CRM Login</button>
+        </div>
+      </div>
+
+      <!-- APPOINTMENTS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-appointments" style="padding: 2rem;">
+        <div class="table-search-bar" style="display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; padding: 0.5rem 0.75rem; background: var(--bg-input); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <span style="font-size: 1rem;">🔍</span>
+          <input type="text" id="appointment-search" placeholder="Search appointments by name, phone, email or treatment..." style="border: none; background: transparent; width: 100%; color: var(--text-main); font-size: 0.85rem; outline: none;">
+        </div>
+        <div class="table-container">
+          <table id="appointments-table">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Contact Info</th>
+                <th>Preferred Date/Time</th>
+                <th>Treatment Type</th>
+                <th>Patient Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="appointments-tbody">
+              <!-- Dynamic Injection -->
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="appointments-empty" style="display: none;">
+          <div class="empty-state-icon">📅</div>
+          <p>No appointments booked yet. Open the chatbot to book a visit.</p>
+        </div>
+      </div>
+
+      <!-- CRM LEADS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-leads" style="display: none; padding: 2rem;">
+        <div class="table-search-bar" style="display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; padding: 0.5rem 0.75rem; background: var(--bg-input); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <span style="font-size: 1rem;">🔍</span>
+          <input type="text" id="leads-search" placeholder="Search leads by name, phone, email or treatment..." style="border: none; background: transparent; width: 100%; color: var(--text-main); font-size: 0.85rem; outline: none;">
+        </div>
+        <div class="table-container">
+          <table id="leads-table">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Contact Info</th>
+                <th>Treatment Interest</th>
+                <th>Urgency / Visit History</th>
+                <th>Lead Tag Score</th>
+                <th>Date Captured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody">
+              <!-- Dynamic Injection -->
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="leads-empty" style="display: none;">
+          <div class="empty-state-icon">🔥</div>
+          <p>No qualified leads found. Triage questions in the chat will populate this.</p>
+        </div>
+      </div>
+
+      <!-- WHATSAPP EXPORT TAB CONTENT -->
+      <div class="tab-content-view" id="tab-whatsapp" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 0.5rem;">CRM WhatsApp Format Cards</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Copy patient profiles formatted ready for WhatsApp messaging and lead management.</p>
+        </div>
+        <div id="whatsapp-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+          <!-- Dynamic Injection -->
+        </div>
+        <div class="empty-state" id="whatsapp-empty" style="display: none;">
+          <div class="empty-state-icon">💬</div>
+          <p>No WhatsApp leads stored. Initiate WhatsApp flows in the chatbot.</p>
+        </div>
+      </div>
+
+      <!-- LIVE HANDOFFS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-handoffs" style="display: none; padding: 2rem;">
+        <div class="table-container">
+          <table id="handoffs-table">
+            <thead>
+              <tr>
+                <th>Session ID</th>
+                <th>Patient Name</th>
+                <th>Phone</th>
+                <th>Escalation Reason</th>
+                <th>Active Chat transcript</th>
+                <th>Handoff Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="handoffs-tbody">
+              <!-- Dynamic Injection -->
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="handoffs-empty" style="display: none;">
+          <div class="empty-state-icon">🚨</div>
+          <p>No active escalations. The receptionist will be notified here when human takeover is requested.</p>
+        </div>
+      </div>
+
+      <!-- TELEPHONY HUB TAB CONTENT -->
+      <div class="tab-content-view" id="tab-telephony" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3>📞 AI Voice Receptionist Telephony Hub</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Configure your Twilio voice line, view call transcripts, and manage receptionist voice alerts.</p>
+          </div>
+          <button class="btn btn-outline" id="clear-call-logs" style="font-size: 0.8rem; padding: 0.5rem 1rem; border-color: var(--primary);">
+            🗑️ Clear Call Logs
+          </button>
+        </div>
+
+        <!-- ACTIVE CALL LIVE MONITOR -->
+        <div id="active-call-monitor-container" style="display: none; margin-bottom: 2rem;"></div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div style="max-width: 500px; flex: 1;">
+            <h4 style="margin-bottom: 0.75rem;">Twilio Voice Integration</h4>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="settings-twilio-sid">Twilio Account SID</label>
+              <input type="text" id="settings-twilio-sid" placeholder="AC..." style="margin-bottom: 0.5rem;">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="settings-twilio-token">Twilio Auth Token</label>
+              <input type="password" id="settings-twilio-token" placeholder="Token..." style="margin-bottom: 0.5rem;">
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label for="settings-twilio-phone">Twilio Phone Number</label>
+              <input type="text" id="settings-twilio-phone" placeholder="+1..." style="margin-bottom: 0.5rem;">
+            </div>
+            <button class="btn btn-primary" id="save-telephony-btn">Save Telephony Credentials</button>
+          </div>
+
+          <div style="background: var(--bg-input); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); max-width: 540px; flex: 1.2;">
+            <h4 style="margin-bottom: 0.75rem;">Twilio Telephony Webhook Configuration</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">To connect a real Twilio phone number to the Google Apps Script Webhook, configure the Webhook URL in your Twilio Console:</p>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label>Copy Webhook URL for Twilio Voice:</label>
+              <input type="text" id="telephony-webhook-url" readonly style="background: var(--bg-card); cursor: pointer; width: 100%; padding: 0.5rem;" onclick="this.select(); document.execCommand('copy'); app.showSystemAlert('Webhook URL copied to clipboard!', 'info');" value="Please configure Google Sheets URL first...">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Configure this as "A call comes in" HTTP GET/POST Webhook under Twilio Phone Number settings.</span>
+            </div>
+            <ul style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+              <li>Appends `?type=twilioVoice` to route Twilio XML responses (TwiML).</li>
+              <li>Calculates clinic hours in real-time, matching timezone offsets.</li>
+              <li>Allows call redirection (`<Dial>`) to human receptionist when requested.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+        <h4>📞 AI Voice Call History</h4>
+        <div class="table-container" style="margin-top: 1rem;">
+          <table id="calls-table">
+            <thead>
+              <tr>
+                <th>Caller</th>
+                <th>Time & Date</th>
+                <th>Duration</th>
+                <th>Status</th>
+                <th>Transcripts</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="calls-tbody">
+              <!-- Call logs dynamically rendered here -->
+            </tbody>
+          </table>
+          <div class="empty-state" id="calls-empty" style="display: none;">
+            <div class="empty-state-icon">📞</div>
+            <p>No phone calls logged yet. Patients can call the virtual receptionist from the landing page call simulator.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHATSAPP GATEWAY HUB TAB CONTENT -->
+      <div class="tab-content-view" id="tab-gateway" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <h3>💬 Omnichannel WhatsApp Business API Hub</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Simulate WhatsApp patient interactions and view live webhook logs / automated follow-ups.</p>
+        </div>
+        
+        <div class="gateway-layout">
+          <!-- WhatsApp Simulator Panel -->
+          <div class="gateway-panel">
+            <h4 style="margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
+              <span style="color:#25d366;">🟢</span> WhatsApp Webhook Simulator
+            </h4>
+            <div class="wa-chat-area" id="wa-chat-messages">
+              <!-- Live Chat Bubbles -->
+              <div class="wa-bubble incoming">
+                Hi, do you offer clear aligners like Invisalign?
+                <div class="wa-bubble-time">10:45 AM</div>
+              </div>
+              <div class="wa-bubble outgoing">
+                Hello! Yes, Apex Dental Care offers Invisalign® Clear Aligners starting from ₹1,20,000. They are virtually invisible, removable, and highly comfortable. A doctor consultation is recommended for exact mapping.
+                <div class="wa-bubble-time">10:45 AM</div>
+              </div>
+            </div>
+            <div class="wa-input-row">
+              <input type="text" id="wa-simulator-input" placeholder="Type a message as a patient on WhatsApp..." autocomplete="off">
+              <button class="btn btn-primary" id="wa-simulator-send" style="border-radius:50px; padding:0.5rem 1.25rem; font-size:0.85rem;">Send</button>
+            </div>
+          </div>
+          
+          <!-- Developer Payload & Cron Console -->
+          <div class="gateway-panel" style="display:flex; flex-direction:column; gap:1.25rem;">
+            <div>
+              <h4 style="margin-bottom:0.5rem;">⚙️ API Webhook & Follow-up Cron Controls</h4>
+              <p style="font-size:0.8rem; color:var(--text-muted);">Manage scheduled patient recall alerts, reminders, and API tokens.</p>
+              
+              <div style="display:flex; gap:0.5rem; margin-top:0.75rem;">
+                <button class="btn btn-primary" id="run-cron-btn" style="font-size:0.8rem; padding:0.5rem 1rem;">
+                  ⏳ Run Automation Cron (24h/6m)
+                </button>
+                <button class="btn btn-outline" id="clear-webhook-logs" style="font-size:0.8rem; padding:0.5rem 1rem;">
+                  🗑️ Clear Console
+                </button>
+              </div>
+            </div>
+            
+            <div style="flex:1; display:flex; flex-direction:column;">
+              <h5 style="margin-bottom:0.4rem; color:var(--text-muted);">Live JSON Webhook Payload Console</h5>
+              <div class="gateway-log-view" id="wa-payload-console">
+[SYSTEM] WhatsApp Developer Hook Active. Logs will populate here when messages are processed...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREATMENTS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-treatments" style="display: none; padding: 2rem;">
+        <div style="padding-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3>Treatment Inventory</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Manage the treatments and services catalog offered by this clinic. These will render live on the website and chatbot prompts.</p>
+          </div>
+          <button class="btn btn-primary" id="treatment-add-btn">➕ Add New Treatment</button>
+        </div>
+        <div class="table-container" style="margin-top: 1.5rem;">
+          <table id="treatments-table">
+            <thead>
+              <tr>
+                <th>Display Order</th>
+                <th>Treatment Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Flags</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="treatments-tbody">
+              <!-- Dynamic Injection -->
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="treatments-empty" style="display: none;">
+          <div class="empty-state-icon">🦷</div>
+          <p>No treatments found. Add a treatment to get started.</p>
+        </div>
+      </div>
+
+      <!-- CLINIC SETTINGS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-clinic-settings" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3>Clinic Information & Branding</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Configure public identity, visual branding colors, and active settings for this clinic tenant.</p>
+          </div>
+          <button class="btn btn-primary" id="settings-clinic-save-btn">💾 Save Clinic Settings</button>
+        </div>
+        
+        <form id="clinic-settings-form" onsubmit="event.preventDefault();">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+            <!-- Section 1: Branding -->
+            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+              <h4 style="margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem;">🎨 Visual Branding</h4>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-clinicName">Clinic Name</label>
+                <input type="text" id="settings-clinic-clinicName" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-tagline">Tagline</label>
+                <input type="text" id="settings-clinic-tagline">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-logoURL">Logo Emoji / Icon URL</label>
+                <input type="text" id="settings-clinic-logoURL">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label for="settings-clinic-primaryButtonColor">Primary Color</label>
+                  <input type="color" id="settings-clinic-primaryButtonColor" style="height: 42px; padding: 0.2rem; cursor: pointer;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label for="settings-clinic-secondaryButtonColor">Hover Color</label>
+                  <input type="color" id="settings-clinic-secondaryButtonColor" style="height: 42px; padding: 0.2rem; cursor: pointer;">
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-clinicDescription">Short Description</label>
+                <textarea id="settings-clinic-clinicDescription" rows="3" style="width: 100%; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-main); font-family: var(--font-body); resize: vertical;"></textarea>
+              </div>
+            </div>
+
+            <!-- Section 2: Contact Info -->
+            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+              <h4 style="margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem;">📞 Contact & Location</h4>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-phone">Primary Phone</label>
+                <input type="text" id="settings-clinic-phone" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-emergencyPhone">Emergency Hotline</label>
+                <input type="text" id="settings-clinic-emergencyPhone">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-email">Clinic Email</label>
+                <input type="email" id="settings-clinic-email" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-whatsappNumber">WhatsApp Number</label>
+                <input type="text" id="settings-clinic-whatsappNumber">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-address">Clinic Address</label>
+                <input type="text" id="settings-clinic-address">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-googleMapsLink">Google Maps Embed/Search Link</label>
+                <input type="url" id="settings-clinic-googleMapsLink">
+              </div>
+            </div>
+
+            <!-- Section 3: Operations & Social -->
+            <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+              <h4 style="margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem;">⚙️ Operating Details & Socials</h4>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-workingHours">Working Hours</label>
+                <input type="text" id="settings-clinic-workingHours">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-bookingInstructions">Booking & Pricing Instructions</label>
+                <input type="text" id="settings-clinic-bookingInstructions">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-galleryImages">Clinic Gallery Image URLs (Comma-separated)</label>
+                <input type="text" id="settings-clinic-galleryImages" placeholder="e.g. https://images.unsplash.com/photo-1629909613654-28e377c37b09, https://images.unsplash.com/photo-1588776814546-1ffcf47267a5">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label for="settings-clinic-currency">Currency Symbol</label>
+                  <input type="text" id="settings-clinic-currency" placeholder="₹">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label for="settings-clinic-timezone">Timezone</label>
+                  <input type="text" id="settings-clinic-timezone" placeholder="Asia/Kolkata">
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-websiteURL">Website URL</label>
+                <input type="url" id="settings-clinic-websiteURL">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-facebookURL">Facebook URL</label>
+                <input type="url" id="settings-clinic-facebookURL">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-instagramURL">Instagram URL</label>
+                <input type="url" id="settings-clinic-instagramURL">
+              </div>
+              <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="settings-clinic-reviewLink">Google Reviews Link</label>
+                <input type="url" id="settings-clinic-reviewLink">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- SETTINGS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-settings" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+          <div style="max-width: 500px; flex: 1;">
+            <h3 style="margin-bottom: 0.5rem;">Google Sheets Integration</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Connect DentalAI directly to a Google Spreadsheet. Appointments, qualified leads, and triage alerts will sync automatically.</p>
+            
+            <div class="form-group">
+              <label for="settings-sheet-url">Google Apps Script Web App URL</label>
+              <input type="url" id="settings-sheet-url" placeholder="https://script.google.com/macros/s/.../exec" style="margin-bottom: 0.75rem;">
+              <span id="sync-status-badge" class="badge badge-warm" style="margin-top: 0.25rem;">Disconnected (Local Storage Active)</span>
+            </div>
+            
+            <div class="form-group" style="margin-top: 1rem;">
+              <label for="settings-receptionist-email">Receptionist Notification Email</label>
+              <input type="email" id="settings-receptionist-email" placeholder="receptionist@apexdental.in" style="margin-bottom: 0.5rem;">
+              <span style="font-size:0.75rem; color:var(--text-muted);">Triggers email alerts on Handoff Escalations and Emergencies.</span>
+            </div>
+
+            <div class="form-group" style="margin-top: 1rem;">
+              <label for="settings-calendar-id">Google Calendar ID</label>
+              <input type="text" id="settings-calendar-id" placeholder="primary" style="margin-bottom: 0.5rem;">
+              <span style="font-size:0.75rem; color:var(--text-muted);">Appointments are automatically reserved in this Calendar.</span>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+              <button class="btn btn-primary" id="save-settings-btn">Save & Connect</button>
+              <button class="btn btn-outline" id="test-settings-btn">Test Connection</button>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-input); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); max-width: 540px; flex: 1.2;">
+            <h4 style="margin-bottom: 0.75rem;">Setup Instructions</h4>
+            <ol style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+              <li>Create a blank Google Sheet.</li>
+              <li>Navigate to <strong>Extensions ➔ Apps Script</strong>.</li>
+              <li>Paste the code from the file <a href="google_apps_script.js" target="_blank" style="color: var(--primary); font-weight: 600;">google_apps_script.js</a> into the script editor.</li>
+              <li>Click <strong>Deploy ➔ New deployment</strong>. Select type <strong>Web app</strong>.</li>
+              <li>Configure: <em>Execute as: "Me"</em> and <em>Who has access: "Anyone"</em>.</li>
+              <li>Click <strong>Deploy</strong>, authorize access, and copy the generated <strong>Web app URL</strong>.</li>
+              <li>Paste the URL on the left and click <strong>Save & Connect</strong>. The script will automatically create the sheets and headers!</li>
+            </ol>
+            <button class="btn btn-outline" style="width: 100%; font-size: 0.8rem; padding: 0.5rem;" onclick="app.copyAppsScriptTemplate(this)">
+              📋 Copy Apps Script Code Template
+            </button>
+          </div>
+        </div>
+
+        <!-- Separator -->
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2.5rem 0;">
+
+        <!-- GEMINI AI BRAIN CONFIGURATION -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+          <div style="max-width: 500px; flex: 1;">
+            <h3 style="margin-bottom: 0.5rem;">Gemini AI Brain (NLP Upgrade)</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Enable Gemini 2.5 Flash model capabilities to allow the chatbot to chat naturally and answer medical/clinic questions dynamically.</p>
+            
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+              <label class="switch" style="position: relative; display: inline-block; width: 44px; height: 24px; margin-bottom: 0;">
+                <input type="checkbox" id="settings-ai-enabled" style="opacity: 0; width: 0; height: 0;">
+                <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-color); transition: .3s; border-radius: 24px;"></span>
+              </label>
+              <span style="font-weight: 600; font-size: 0.95rem;" id="ai-toggle-label">AI Brain Disabled</span>
+            </div>
+
+            <div class="form-group">
+              <label for="settings-gemini-key">Gemini API Key</label>
+              <input type="password" id="settings-gemini-key" placeholder="AIzaSy..." style="margin-bottom: 0.75rem;">
+              <span id="ai-status-badge" class="badge badge-warm" style="margin-top: 0.25rem;">Inactive</span>
+            </div>
+            
+            <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+              <button class="btn btn-primary" id="save-ai-btn">Save Gemini Key</button>
+              <button class="btn btn-outline" id="test-ai-btn">Test AI Connection</button>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-input); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); max-width: 540px; flex: 1.2;">
+            <h4 style="margin-bottom: 0.75rem;">AI Brain Instructions</h4>
+            <ul style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>Obtain a free/pay-as-you-go key from the <a href="https://aistudio.google.com/" target="_blank" style="color: var(--primary); font-weight: 600;">Google AI Studio</a>.</li>
+              <li>When enabled, the chatbot uses the Gemini API to respond to patient questions in their selected language.</li>
+              <li>The AI handles dental objections, describes clinic amenities, explains treatment benefits, and outlines hours/parking.</li>
+              <li>When the patient is ready to book an appointment or reports an emergency, the AI automatically transfers them to our step-by-step secure registration form.</li>
+            </ul>
+          </div>
+      </div>
+
+        <!-- Separator -->
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2.5rem 0;">
+
+        <!-- RECEPTIONIST SOUND ALERTS -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+          <div style="max-width: 500px; flex: 1;">
+            <h3 style="margin-bottom: 0.5rem;">Notification Sounds</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Enable sound alerts for new CRM qualified leads and live chat takeover requests.</p>
+            
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+              <label class="switch" style="position: relative; display: inline-block; width: 44px; height: 24px; margin-bottom: 0;">
+                <input type="checkbox" id="settings-sound-enabled" style="opacity: 0; width: 0; height: 0;" checked>
+                <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-color); transition: .3s; border-radius: 24px;"></span>
+              </label>
+              <span style="font-weight: 600; font-size: 0.95rem;" id="sound-toggle-label">Notification Sounds Enabled</span>
+            </div>
+            
+            <button class="btn btn-outline" id="test-sound-btn">🔊 Test Sound Chime</button>
+          </div>
+          
+          <div style="background: var(--bg-input); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); max-width: 540px; flex: 1.2;">
+            <h4 style="margin-bottom: 0.75rem;">Sound Alerts Instructions</h4>
+            <ul style="padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>Notification sounds keep your staff alerted in real-time when new qualified leads or active handoffs are received.</li>
+              <li>Chimes are generated dynamically using the browser's Web Audio API (no external file dependencies).</li>
+              <li>A pleasant "ding-dong" chime plays for standard patient leads.</li>
+              <li>A rapid double-beep alert plays for high-priority emergency triage and live chat handoffs.</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+
+      <!-- SYSTEM DIAGNOSTICS LOGS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-logs" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3>📋 Advanced System Diagnostics & Logs Center</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Real-time network interception, console listener, Gemini API logging, and system diagnostics.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-outline" id="btn-export-logs" style="font-size: 0.8rem; padding: 0.5rem 1rem; border-color: var(--primary); color: var(--primary);">
+              📥 Export Logs JSON
+            </button>
+            <button class="btn btn-outline" id="clear-system-logs" style="font-size: 0.8rem; padding: 0.5rem 1rem; border-color: var(--color-emergency); color: var(--color-emergency);">
+              🗑️ Clear System Logs
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Counter Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: center;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Total Logs</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-top: 0.25rem;" id="log-stat-total">0</div>
+          </div>
+          <div style="background: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: center;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Errors</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-emergency); margin-top: 0.25rem;" id="log-stat-errors">0</div>
+          </div>
+          <div style="background: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: center;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Warnings</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b; margin-top: 0.25rem;" id="log-stat-warnings">0</div>
+          </div>
+          <div style="background: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: center;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Gemini AI</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #a855f7; margin-top: 0.25rem;" id="log-stat-ai">0</div>
+          </div>
+          <div style="background: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); text-align: center;">
+            <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Syncs</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6; margin-top: 0.25rem;" id="log-stat-syncs">0</div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;" id="log-filters-container">
+            <button class="btn btn-outline active-filter" data-filter="all" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">All</button>
+            <button class="btn btn-outline" data-filter="error" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; border-color: var(--color-emergency); color: var(--color-emergency);">Errors</button>
+            <button class="btn btn-outline" data-filter="gemini" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; border-color: #a855f7; color: #a855f7;">Gemini</button>
+            <button class="btn btn-outline" data-filter="sheets" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; border-color: #f59e0b; color: #f59e0b;">Sheets</button>
+            <button class="btn btn-outline" data-filter="telephony" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; border-color: #10b981; color: #10b981;">Voice</button>
+            <button class="btn btn-outline" data-filter="network" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; border-color: #3b82f6; color: #3b82f6;">Network</button>
+            <button class="btn btn-outline" data-filter="console" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; border-color: #64748b; color: #64748b;">Console</button>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex: 1; min-width: 280px; justify-content: flex-end;">
+            <input type="text" id="log-search-input" placeholder="Search logs by keyword..." style="background: var(--bg-input); border: 1px solid var(--border-color); padding: 0.45rem 0.75rem; border-radius: var(--radius-md); font-size: 0.8rem; width: 100%; max-width: 250px; color: var(--text-main); outline: none;">
+            <label style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; cursor: pointer; color: var(--text-muted); flex-shrink: 0; user-select: none;">
+              <input type="checkbox" id="log-autoscroll-chk" checked style="cursor: pointer;"> Auto-scroll
+            </label>
+          </div>
+        </div>
+
+        <div class="diagnostics-logs-container" id="system-logs-console">
+          <div class="log-item">
+            <div class="log-header">
+              <div class="log-title-area">
+                <span class="log-tag" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">SYSTEM</span>
+                <span class="log-msg">Diagnostics logs console initialized. Perform actions in patient site or settings panel to view live logs...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRM ANALYTICS TAB CONTENT -->
+      <div class="tab-content-view" id="tab-analytics" style="display: none; padding: 2rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <h3>📊 CRM Analytics & Conversion Insights</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Analyze appointment bookings, lead urgency distributions, and conversion metrics in real-time.</p>
+        </div>
+        <div class="analytics-charts-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <h4 style="margin-bottom: 1rem; color: var(--primary);">Treatment Pricing Distribution</h4>
+            <div style="height: 300px; position: relative;">
+              <canvas id="chart-treatments"></canvas>
+            </div>
+          </div>
+          <div style="background: var(--bg-card); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <h4 style="margin-bottom: 1rem; color: var(--primary);">CRM Lead Urgency Distribution</h4>
+            <div style="height: 300px; position: relative;">
+              <canvas id="chart-leads"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPECIALISTS INVENTORY TAB CONTENT -->
+      <div class="tab-content-view" id="tab-specialists" style="display: none; padding: 2rem;">
+        <div style="padding-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <h3>Specialists Manager</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Manage doctor profiles, specializations, and details. These will render live on the website landing page.</p>
+          </div>
+          <button class="btn btn-primary" id="specialist-add-btn">➕ Add New Specialist</button>
+        </div>
+        <div class="table-container">
+          <table id="specialists-table">
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Experience</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="specialists-tbody">
+              <!-- Dynamic Injection -->
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="specialists-empty" style="display: none;">
+          <div class="empty-state-icon">👨‍⚕️</div>
+          <p>No specialists found. Add a doctor profile to get started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING CHATBOT WIDGET -->
+  <div id="chat-widget-container">
+    <!-- PHONE SIMULATOR BUTTON -->
+    <button class="chat-toggle phone-call-toggle" id="phone-toggle-btn" title="Call AI Receptionist">
+      <span class="chat-toggle-icon">📞</span>
+    </button>
+
+    <!-- TOGGLE BUTTON -->
+    <button class="chat-toggle" id="chat-toggle-btn">
+      <span class="chat-badge" id="chat-alert-dot" style="display: none;"></span>
+      <span class="chat-toggle-icon">💬</span>
+    </button>
+    
+    <!-- DIAGNOSTICS FLOATING BUTTON -->
+    <button class="diagnostics-toggle" id="diagnostics-toggle-btn" title="System Diagnostics Logs">
+      🛠️
+    </button>
+    
+    <!-- CHAT WINDOW -->
+    <div class="chat-window glass" id="chat-window">
+      <!-- HEADER -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">🤖</div>
+          <div class="chat-status">
+            <span class="chat-title">DentalAI</span>
+            <span class="chat-subtitle">
+              <span class="status-dot"></span>
+              Clinic Virtual Receptionist
+            </span>
+          </div>
+        </div>
+        <div class="chat-header-actions" style="display: flex; align-items: center; gap: 0.5rem;">
+          <select class="lang-select" id="chat-language-select">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="mr">मराठी (Marathi)</option>
+          </select>
+          <button id="chat-tts-toggle" title="Toggle Voice Output" style="background: none; border: none; font-size: 1.1rem; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0.25rem;">
+            🔊
+          </button>
+          <button class="chat-close-btn" id="chat-close-btn">×</button>
+        </div>
+      </div>
+      
+      <!-- MESSAGE WINDOW -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Initial bot greeting is dynamically injected -->
+      </div>
+      
+      <!-- SUGGESTION CHIPS -->
+      <div class="suggestion-container" id="suggestion-chips">
+        <!-- Chips injected dynamically -->
+      </div>
+      
+      <!-- INPUT BAR -->
+      <div class="chat-input-bar">
+        <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+        <button class="chat-mic-btn" id="chat-mic-btn" title="Voice Input" style="width: 38px; height: 38px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition);">
+          🎙️
+        </button>
+        <button class="chat-send-btn" id="chat-send-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM APPOINTMENT EDIT MODAL -->
+  <div class="modal-overlay" id="edit-appointment-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="edit-modal-title">Edit Appointment</h3>
+        <button class="chat-close-btn" style="color: var(--text-main); font-size: 1.5rem;" onclick="app.closeModal('edit-appointment-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-appointment-form">
+          <input type="hidden" id="edit-app-id">
+          <div class="form-group">
+            <label for="edit-app-name">Patient Name</label>
+            <input type="text" id="edit-app-name" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-phone">Phone Number</label>
+            <input type="text" id="edit-app-phone" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-email">Email Address</label>
+            <input type="email" id="edit-app-email" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-date">Preferred Date</label>
+            <input type="date" id="edit-app-date" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-time">Preferred Time</label>
+            <input type="time" id="edit-app-time" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-treatment">Treatment Type</label>
+            <select id="edit-app-treatment">
+              <option value="Dental Cleaning">Dental Cleaning</option>
+              <option value="Teeth Whitening">Teeth Whitening</option>
+              <option value="Braces">Braces</option>
+              <option value="Invisalign">Invisalign</option>
+              <option value="Dental Implants">Dental Implants</option>
+              <option value="Root Canal Treatment">Root Canal Treatment</option>
+              <option value="Wisdom Tooth Extraction">Wisdom Tooth Extraction</option>
+              <option value="Veneers">Veneers</option>
+              <option value="Other">Other Treatment / Consultation</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModal('edit-appointment-modal')">Cancel</button>
+        <button class="btn btn-primary" id="save-app-btn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM TREATMENT EDIT/ADD MODAL -->
+  <div class="modal-overlay" id="edit-treatment-modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="treatment-modal-title">Add / Edit Treatment</h3>
+        <button class="chat-close-btn" style="color: var(--text-main); font-size: 1.5rem;" onclick="app.closeModal('edit-treatment-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-treatment-form" onsubmit="event.preventDefault();">
+          <input type="hidden" id="edit-treatment-id">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-treatment-name">Treatment Name</label>
+            <input type="text" id="edit-treatment-name" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-treatment-category">Category</label>
+            <input type="text" id="edit-treatment-category" placeholder="e.g. Cosmetic, Orthodontics, Surgery" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-treatment-price">Starting Price</label>
+            <input type="number" id="edit-treatment-price" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-treatment-displayOrder">Display Order</label>
+            <input type="number" id="edit-treatment-displayOrder" value="1" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-treatment-description">Description</label>
+            <textarea id="edit-treatment-description" rows="3" style="width: 100%; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-main); font-family: var(--font-body); resize: vertical;" required></textarea>
+          </div>
+          <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0;">
+              <input type="checkbox" id="edit-treatment-featured" style="width: auto; margin-bottom: 0; cursor: pointer;">
+              <label for="edit-treatment-featured" style="margin-bottom: 0; cursor: pointer;">Featured (Highlight on Site)</label>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0;">
+              <input type="checkbox" id="edit-treatment-active" style="width: auto; margin-bottom: 0; cursor: pointer;" checked>
+              <label for="edit-treatment-active" style="margin-bottom: 0; cursor: pointer;">Active (Show on Site & Chat)</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="margin-top: 1.5rem;">
+        <button class="btn btn-outline" onclick="app.closeModal('edit-treatment-modal')">Cancel</button>
+        <button class="btn btn-primary" id="save-treatment-btn">Save Treatment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM SPECIALIST EDIT/ADD MODAL -->
+  <div class="modal-overlay" id="edit-specialist-modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="specialist-modal-title">Add / Edit Specialist</h3>
+        <button class="chat-close-btn" style="color: var(--text-main); font-size: 1.5rem;" onclick="app.closeModal('edit-specialist-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-specialist-form" onsubmit="event.preventDefault();">
+          <input type="hidden" id="edit-specialist-id">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-specialist-name">Full Name</label>
+            <input type="text" id="edit-specialist-name" required placeholder="e.g. Dr. Rohan Kulkarni">
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-specialist-specialty">Speciality / Role</label>
+            <input type="text" id="edit-specialist-specialty" placeholder="e.g. Implantologist, Orthodontist" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-specialist-experience">Experience</label>
+            <input type="text" id="edit-specialist-experience" placeholder="e.g. 10 Years Experience" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="edit-specialist-photo">Photo URL (Emoji or Image link)</label>
+            <input type="text" id="edit-specialist-photo" placeholder="e.g. 👨‍⚕️, 👩‍⚕️ or image URL">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="margin-top: 1.5rem;">
+        <button class="btn btn-outline" onclick="app.closeModal('edit-specialist-modal')">Cancel</button>
+        <button class="btn btn-primary" id="save-specialist-btn">Save Specialist</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE HANDOFF TRANSCRIPT VIEW MODAL -->
+  <div class="modal-overlay" id="handoff-transcript-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="handoff-modal-title">Live Chat Escalation</h3>
+        <button class="chat-close-btn" style="color: var(--text-main); font-size: 1.5rem;" onclick="app.closeModal('handoff-transcript-modal')">×</button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div style="background: var(--bg-input); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem;">
+          <div id="handoff-meta-name">Patient: </div>
+          <div id="handoff-meta-phone">Phone: </div>
+          <div id="handoff-meta-reason" style="font-weight: 600; color: var(--color-emergency); margin-top: 0.25rem;">Reason: </div>
+        </div>
+        <h4>Chat Log History</h4>
+        <div class="transcript-view" id="handoff-transcript-chat">
+          <!-- Dynamic Transcripts Injected -->
+        </div>
+        <!-- Live Chat Takeover Input Container -->
+        <div id="handoff-takeover-input-container" style="display: none; gap: 0.5rem; margin-top: 1rem;">
+          <input type="text" id="handoff-takeover-input" placeholder="Type a message to send to the patient..." style="flex: 1; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-main); font-family: var(--font-body);" autocomplete="off">
+          <button class="btn btn-primary" id="handoff-takeover-send-btn" style="padding: 0.5rem 1.25rem;">Send</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModal('handoff-transcript-modal')">Close Window</button>
+        <button class="btn btn-primary" id="handoff-takeover-btn">Take Over Conversation</button>
+        <button class="btn btn-outline" id="handoff-release-btn" style="display: none; border-color: var(--color-emergency); color: var(--color-emergency);">Release Takeover</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURE ADMIN LOGIN MODAL -->
+  <div class="modal-overlay" id="admin-login-modal">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h3>🔐 Secure CRM Authentication</h3>
+        <button class="chat-close-btn" style="color: var(--text-main); font-size: 1.5rem;" onclick="app.closeModal('admin-login-modal')">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Please authenticate to access sensitive patient information (emails, phone numbers, and full transcripts).</p>
+        <form id="admin-login-form" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" placeholder="staff or admin" required autocomplete="username">
+          </div>
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <div id="login-error-msg" style="color: var(--color-emergency); font-size: 0.85rem; margin-top: 0.75rem; display: none; font-weight: 600;">Invalid password. Try again!</div>
+        </form>
+      </div>
+      <div class="modal-footer" style="margin-top: 1.25rem;">
+        <button class="btn btn-outline" onclick="app.closeModal('admin-login-modal')">Cancel</button>
+        <button class="btn btn-primary" id="submit-login-btn">Verify Credentials</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYSTEM DIAGNOSTICS LOGS MODAL -->
+  <div class="modal-overlay" id="system-diagnostics-modal">
+    <div class="modal-content" style="max-width: 800px; width: 95%;">
+      <div class="modal-header">
+        <h3>🛠️ DentalAI System Diagnostics & Logs</h3>
+        <button class="chat-close-btn" style="color: var(--text-main); font-size: 1.5rem;" onclick="app.closeModal('system-diagnostics-modal')">×</button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Live Configuration Status -->
+        <div style="background: var(--bg-input); border: 1px solid var(--border-color); padding: 1.25rem; border-radius: var(--radius-md); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Google Sheets Web App</div>
+            <div id="diag-status-sheets" style="font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem; color: var(--text-main);">Checking...</div>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Receptionist Email</div>
+            <div id="diag-status-email" style="font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem; word-break: break-all; color: var(--text-main);">Checking...</div>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Calendar Sync ID</div>
+            <div id="diag-status-calendar" style="font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem; color: var(--text-main);">Checking...</div>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Gemini AI Brain</div>
+            <div id="diag-status-ai" style="font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem; color: var(--text-main);">Checking...</div>
+          </div>
+        </div>
+
+        <!-- Action Control Buttons -->
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="diag-btn-copy" style="font-size: 0.8rem; padding: 0.5rem 1rem;">
+            📋 Copy Logs to Clipboard
+          </button>
+          <button class="btn btn-outline" id="diag-btn-test" style="font-size: 0.8rem; padding: 0.5rem 1rem; border-color: var(--primary);">
+            🧪 Run Connection Test
+          </button>
+          <button class="btn btn-outline" id="diag-btn-clear" style="font-size: 0.8rem; padding: 0.5rem 1rem; border-color: var(--color-emergency);">
+            🗑️ Clear System Logs
+          </button>
+        </div>
+
+        <!-- Terminal log output -->
+        <div style="flex: 1; min-height: 250px; display: flex; flex-direction: column;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <span>Console Log Terminal:</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Self-updating live feed</span>
+          </div>
+          <div class="diagnostics-logs-container" style="height: 300px; padding: 1.25rem; border-radius: var(--radius-md);" id="diag-logs-console">
+            <div class="log-item">
+              <div class="log-header">
+                <div class="log-title-area">
+                  <span class="log-tag" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">SYSTEM</span>
+                  <span class="log-msg">Diagnostics logs console initialized...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Helpful troubleshooting tips -->
+        <div style="background: rgba(13, 148, 136, 0.05); border: 1px solid rgba(13, 148, 136, 0.2); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+            💡 Why aren't emails or calendar events working?
+          </h4>
+          <ul style="padding-left: 1.25rem; font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.4;">
+            <li><strong>Authorization Blocked (Calendar/Gmail):</strong> You must grant permissions inside Google. In the Apps Script Editor, select <code>triggerAuthorization</code> from the dropdown in the top toolbar and click <strong>Run</strong>. This will force Google to show the authorization prompt. Click "Review Permissions" and grant access.</li>
+            <li><strong>Apps Script Deployments cache aggressively:</strong> Whenever you edit the script, you MUST click <em>Deploy ➔ Manage Deployments ➔ Edit (Pencil) ➔ select Version: "New version" ➔ Deploy</em>. Simply clicking "Save" does NOT run your new changes!</li>
+            <li><strong>Incorrect permissions:</strong> Ensure your web app deployment is configured with <em>Execute as: "Me"</em> and <em>Who has access: "Anyone"</em>.</li>
+            <li><strong>Google Executions History:</strong> In the Apps Script editor, open the <em>Executions</em> tab from the sidebar. You can inspect any failed run to see Google's internal logs and exceptions.</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModal('system-diagnostics-modal')" style="width: 100%;">Close Console</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHONE SIMULATOR MODAL (PATIENT SIDE) -->
+  <div class="phone-modal" id="phone-simulator-modal" style="display: none;">
+    <div class="phone-modal-content glass">
+      <div class="phone-modal-header">
+        <div class="phone-avatar">📞</div>
+        <h4 id="phone-status-title">Ringing...</h4>
+        <div class="phone-timer" id="phone-call-timer">00:00</div>
+      </div>
+      
+      <div class="phone-modal-body">
+        <!-- SVG wave pulse animations -->
+        <div class="waveform-container" id="phone-waveform">
+          <div class="wave wave1"></div>
+          <div class="wave wave2"></div>
+          <div class="wave wave3"></div>
+          <div class="wave wave4"></div>
+          <div class="wave wave5"></div>
+          <div class="wave wave6"></div>
+          <div class="wave wave7"></div>
+          <div class="wave wave8"></div>
+          <div class="wave wave9"></div>
+        </div>
+        
+        <!-- Live Call Transcripts -->
+        <div class="phone-transcript" id="phone-call-transcript">
+          <div style="color: var(--text-muted); font-size: 0.8rem; text-align: center; margin-top: 2rem;">Call starting...</div>
+        </div>
+      </div>
+      
+      <div class="phone-modal-footer">
+        <button class="btn-phone decline" id="phone-hangup-btn" title="Hang Up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAFF TELEPHONY TRANSFER MODAL (STAFF SIDE) -->
+  <div class="modal-overlay" id="call-transfer-modal" style="display: none; z-index: 10000;">
+    <div class="modal-content" style="max-width: 450px; text-align: center; border: 2px solid var(--color-emergency); box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);">
+      <div class="modal-header" style="justify-content: center; flex-direction: column; gap: 0.5rem; border: none; padding-bottom: 0;">
+        <div style="font-size: 3rem;" class="ringing-icon-animate">📞</div>
+        <h3 style="color: var(--color-emergency); margin: 0.5rem 0 0.25rem 0;">🚨 Inbound Call Transfer Alert</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Patient is requesting a live staff receptionist takeover!</p>
+      </div>
+      <div class="modal-body" style="text-align: left; margin-top: 1rem;">
+        <div style="font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">Current Call Transcript:</div>
+        <div id="staff-call-transcript-preview" style="background: var(--bg-input); border: 1px solid var(--border-color); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; max-height: 120px; overflow-y: auto; font-family: monospace; white-space: pre-wrap; color: var(--text-main);">
+          No speech logged...
+        </div>
+      </div>
+      <div class="modal-footer" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; border: none; padding-top: 0;">
+        <button class="btn btn-outline" id="staff-decline-call-btn" style="border-color: var(--color-emergency); color: var(--color-emergency);">Decline & Mute</button>
+        <button class="btn btn-primary" id="staff-accept-call-btn" style="background: var(--color-emergency); border-color: var(--color-emergency); color: white;">Accept Call & Chat</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="chatbot.js" type="module"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
