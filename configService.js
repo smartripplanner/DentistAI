@@ -41,6 +41,10 @@ export class ConfigService {
       localStorage.setItem('active_clinic_id', cid);
       return cid;
     }
+    const cachedCid = localStorage.getItem('active_clinic_id');
+    if (cachedCid) {
+      return cachedCid;
+    }
     return 'default_clinic';
   }
 

@@ -4402,6 +4402,13 @@ class AppController {
       this.logSystemEvent('SaaS Init Error', err.toString());
       this.updateSyncBadge('disconnected');
       this.renderDashboard();
+    } finally {
+      // Hide full-screen loader after configs have been loaded and UI updated
+      const loader = document.getElementById('app-loader');
+      if (loader) {
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.remove(), 400);
+      }
     }
   }
 

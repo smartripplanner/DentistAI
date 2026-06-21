@@ -9,6 +9,12 @@
 </head>
 <body>
 
+  <!-- APP LOADER SCREEN -->
+  <div id="app-loader">
+    <div class="loader-spinner"></div>
+    <div style="font-family: var(--font-title); font-size: 1.2rem; font-weight: 700; color: var(--text-main); letter-spacing: -0.01em;">Connecting Clinic Portal...</div>
+  </div>
+
   <!-- NAVIGATION HEADER -->
   <header class="glass">
     <a href="#" class="logo">
@@ -623,6 +629,14 @@
               <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="settings-clinic-websiteURL">Website URL</label>
                 <input type="url" id="settings-clinic-websiteURL">
+              </div>
+              <div class="form-group" style="margin-bottom: 1.5rem; background: rgba(13, 148, 136, 0.05); padding: 1.25rem; border-radius: var(--radius-md); border: 1px dashed rgba(13, 148, 136, 0.3);">
+                <label style="font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; display: block;">Unique Patient Portal Link for this Clinic</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="text" id="settings-clinic-uniqueURL" readonly style="flex: 1; padding: 0.65rem 1rem; border-radius: 50px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main); font-weight: 600; outline: none; font-size: 0.9rem;" onclick="this.select(); document.execCommand('copy'); app.showSystemAlert('Unique link copied to clipboard!', 'info');" title="Click to copy link">
+                  <button type="button" class="btn btn-primary" onclick="window.open(document.getElementById('settings-clinic-uniqueURL').value, '_blank')" style="padding: 0.65rem 1.25rem; font-size: 0.85rem; border-radius: 50px; flex-shrink: 0; white-space: nowrap; height: 38px;">🌐 Open Link</button>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; display: block;">Share this URL with patients so they can interact with the customized chatbot and phone systems for this specific clinic tenant.</span>
               </div>
               <div class="form-group" style="margin-bottom: 1rem;">
                 <label for="settings-clinic-facebookURL">Facebook URL</label>

@@ -25,6 +25,13 @@ export class SettingsManager {
       }
     });
 
+    // Populate unique patient portal URL
+    const uniqueUrlInput = document.getElementById('settings-clinic-uniqueURL');
+    if (uniqueUrlInput) {
+      const cid = config.clinicId || configService.detectClinicId();
+      uniqueUrlInput.value = window.location.origin + window.location.pathname + "?clinicId=" + cid;
+    }
+
     // Setup color preview listeners
     const primaryColorInput = document.getElementById('settings-clinic-primaryButtonColor');
     const secondaryColorInput = document.getElementById('settings-clinic-secondaryButtonColor');
