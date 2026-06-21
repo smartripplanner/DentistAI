@@ -1,31 +1,9 @@
-function fetchJSONP(url) {
-  return new Promise((resolve, reject) => {
-    const callbackName = 'jsonp_treatments_' + Math.floor(Math.random() * 1000000);
-    const script = document.createElement('script');
-    
-    const timeout = setTimeout(() => {
-      delete window[callbackName];
-      script.remove();
-      reject(new Error("Treatments fetch timed out."));
-    }, 10000);
-
-    window[callbackName] = function(data) {
-      clearTimeout(timeout);
-      script.remove();
-      delete window[callbackName];
-      resolve(data);
-    };
-
-    const separator = url.indexOf('?') >= 0 ? '&' : '?';
-    script.src = `${url}${separator}callback=${callbackName}`;
-    script.onerror = () => {
-      clearTimeout(timeout);
-      delete window[callbackName];
-      script.remove();
-      reject(new Error("Failed to load treatments script."));
-    };
-    document.body.appendChild(script);
-  });
+async function fetchTreatmentsData(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return await response.json();
 }
 
 export class TreatmentService {
@@ -59,7 +37,7 @@ export class TreatmentService {
     try {
       const separator = sheetsUrl.indexOf('?') >= 0 ? '&' : '?';
       const fetchUrl = `${sheetsUrl}${separator}clinicId=${clinicId}`;
-      const res = await fetchJSONP(fetchUrl);
+      const res = await fetchTreatmentsData(fetchUrl);
       
       if (res.status === 'success' && res.data && res.data.treatments && res.data.treatments.length > 0) {
         // Filter active treatments and sort by displayOrder

@@ -29,7 +29,9 @@ export class SettingsManager {
     const uniqueUrlInput = document.getElementById('settings-clinic-uniqueURL');
     if (uniqueUrlInput) {
       const cid = config.clinicId || configService.detectClinicId();
-      uniqueUrlInput.value = window.location.origin + window.location.pathname + "?clinicId=" + cid;
+      const sheetsUrl = localStorage.getItem('google_sheets_url') || '';
+      const sheetsParam = sheetsUrl ? `&sheetsUrl=${encodeURIComponent(sheetsUrl)}` : '';
+      uniqueUrlInput.value = window.location.origin + window.location.pathname + "?clinicId=" + cid + sheetsParam;
     }
 
     // Setup color preview listeners

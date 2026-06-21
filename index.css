@@ -2237,6 +2237,69 @@ footer.patient-footer {
   to { transform: rotate(360deg); }
 }
 
+/* Clinic Selector Card styles */
+.clinic-selector-card {
+  max-width: 420px;
+  width: 90%;
+  padding: 2.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(28px) saturate(180%);
+  animation: modal-appear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clinic-selector-logo {
+  font-size: 2.75rem;
+  margin-bottom: 0.75rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.clinic-selector-card h2 {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.clinic-selector-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.clinic-selector-advanced {
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+#selector-advanced-fields {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
 
 
 

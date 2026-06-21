@@ -7,7 +7,7 @@ import { ROLES, PERMISSIONS, hasPermission, getPermittedTabs } from './rbac.js';
 // --- GLOBAL SAAS BACKEND CONFIGURATION ---
 // If you are hosting on Vercel, you can paste your Google Sheets Web App URL here
 // to connect all users and devices to your sheet backend globally by default.
-const DEFAULT_SHEETS_URL = "";
+const DEFAULT_SHEETS_URL = "https://script.google.com/macros/s/AKfycbVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec";
 
 class AppController {
   #userRole = 'patient';
@@ -1227,42 +1227,24 @@ class AppController {
     }
   }
 
-  fetchJSONP(url) {
-    return new Promise((resolve, reject) => {
-      const callbackName = 'jsonp_callback_' + Math.floor(Math.random() * 1000000);
-      const scriptId = 'jsonp_script_' + Date.now();
-      
-      // Timeout fallback
-      const timeout = setTimeout(() => {
-        delete window[callbackName];
-        const script = document.getElementById(scriptId);
-        if (script) script.remove();
-        reject(new Error("Connection timed out. Check your URL."));
-      }, 10000);
-
-      window[callbackName] = function(data) {
-        clearTimeout(timeout);
-        const script = document.getElementById(scriptId);
-        if (script) script.remove();
-        delete window[callbackName];
-        resolve(data);
-      };
-
-      const script = document.createElement('script');
-      script.id = scriptId;
-      const separator = url.indexOf('?') >= 0 ? '&' : '?';
-      script.src = `${url}${separator}callback=${callbackName}`;
-      
-      script.onerror = function() {
-        clearTimeout(timeout);
-        delete window[callbackName];
-        const scr = document.getElementById(scriptId);
-        if (scr) scr.remove();
-        reject(new Error("Failed to load script. Check URL."));
-      };
-
-      document.body.appendChild(script);
-    });
+  async fetchJSONP(url) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), 10000);
+    
+    try {
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(id);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return await response.json();
+    } catch(e) {
+      clearTimeout(id);
+      if (e.name === 'AbortError') {
+        throw new Error("Connection timed out. Check your URL.");
+      }
+      throw new Error("Failed to load script. Check URL.");
+    }
   }
 
   async testSheetsConnection(url) {
@@ -4435,6 +4417,100 @@ class AppController {
         loader.classList.add('fade-out');
         setTimeout(() => loader.remove(), 400);
       }
+    }
+  }
+
+  showClinicSelectorScreen() {
+    const loader = document.getElementById('app-loader');
+    if (!loader) return;
+
+    // Reset loader to show the selector screen
+    loader.innerHTML = `
+      <div class="clinic-selector-card glass">
+        <div class="clinic-selector-logo">🦷</div>
+        <h2>Welcome to DentalAI Portal</h2>
+        <p>Please enter your Clinic ID to customize and access your clinic's patient app & staff settings.</p>
+        
+        <form id="clinic-selector-form" onsubmit="event.preventDefault();">
+          <div class="form-group" style="text-align: left; margin-bottom: 1.25rem;">
+            <label for="selector-clinic-id" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.5rem; color: var(--text-main);">Clinic ID</label>
+            <input type="text" id="selector-clinic-id" placeholder="e.g. apex_clinic, city_dental" required style="width: 100%; padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-main); font-size: 0.95rem;">
+            <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">Usually lowercase with underscores.</span>
+          </div>
+          
+          <div class="clinic-selector-advanced" style="text-align: left;">
+            <a href="#" id="selector-advanced-toggle" style="font-size: 0.85rem; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.25rem; font-weight: 600; margin-bottom: 0.75rem;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="advanced-toggle-chevron" style="transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+              Advanced: Connect Custom Google Sheet
+            </a>
+            <div id="selector-advanced-fields" style="display: none; margin-bottom: 1.25rem;">
+              <label for="selector-sheets-url" style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.5rem; margin-top: 0.75rem; color: var(--text-main);">Google Sheets Web App URL</label>
+              <input type="url" id="selector-sheets-url" placeholder="https://script.google.com/macros/s/.../exec" style="width: 100%; padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); background: var(--bg-input); color: var(--text-main); font-size: 0.9rem;">
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; justify-content: center; font-weight: 700; margin-bottom: 0.75rem;">
+            Access Clinic Portal
+          </button>
+          
+          <button type="button" id="selector-demo-btn" class="btn btn-outline" style="width: 100%; padding: 0.75rem; justify-content: center;">
+            Use Demo (Apex Dental Care)
+          </button>
+        </form>
+      </div>
+    `;
+
+    // Bind Advanced toggle
+    const toggleLink = document.getElementById('selector-advanced-toggle');
+    const advancedFields = document.getElementById('selector-advanced-fields');
+    const chevron = document.getElementById('advanced-toggle-chevron');
+    if (toggleLink && advancedFields) {
+      toggleLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isHidden = advancedFields.style.display === 'none';
+        advancedFields.style.display = isHidden ? 'block' : 'none';
+        if (chevron) {
+          chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Bind Form Submit
+    const form = document.getElementById('clinic-selector-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const cidInput = document.getElementById('selector-clinic-id');
+        const sheetsInput = document.getElementById('selector-sheets-url');
+        
+        const clinicId = cidInput.value.trim().toLowerCase().replace(/[^a-z0-9_]/g, '');
+        if (!clinicId) {
+          this.showSystemAlert('Please enter a valid Clinic ID.', 'error');
+          return;
+        }
+
+        const customSheetsUrl = sheetsInput ? sheetsInput.value.trim() : '';
+
+        // Save to localStorage
+        localStorage.setItem('active_clinic_id', clinicId);
+        
+        let targetUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?clinicId=" + encodeURIComponent(clinicId);
+        if (customSheetsUrl) {
+          localStorage.setItem('google_sheets_url', customSheetsUrl);
+          targetUrl += "&sheetsUrl=" + encodeURIComponent(customSheetsUrl);
+        }
+
+        window.location.href = targetUrl;
+      });
+    }
+
+    // Bind Demo Button
+    const demoBtn = document.getElementById('selector-demo-btn');
+    if (demoBtn) {
+      demoBtn.addEventListener('click', () => {
+        localStorage.setItem('active_clinic_id', 'apex_clinic');
+        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + "?clinicId=apex_clinic";
+      });
     }
   }
 
