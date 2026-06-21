@@ -1378,6 +1378,9 @@ class AppController {
     const url = this.getSheetsUrl();
     if (!url) return;
 
+    const notificationEmail = localStorage.getItem('receptionist_email') || '';
+    const calendarId = localStorage.getItem('google_calendar_id') || '';
+
     try {
       // mode: 'no-cors' prevents browser CORS blockages during background POST redirections on Google Apps Script
       fetch(url, {
@@ -1386,7 +1389,13 @@ class AppController {
         headers: {
           'Content-Type': 'text/plain'
         },
-        body: JSON.stringify({ action: action, clinicId: configService.clinicId, data: data })
+        body: JSON.stringify({ 
+          action: action, 
+          clinicId: configService.clinicId, 
+          data: data,
+          notificationEmail: notificationEmail,
+          calendarId: calendarId
+        })
       });
     } catch (e) {
       console.error("Sheets write sync failed:", e);
