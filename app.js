@@ -507,7 +507,7 @@ class AppController {
 
     const hashedPass = await this.sha256(pass);
     const devHash = 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f';
-    const staffHash = '42fdb5e4d1f2fa41fb5d6be5b84931a74d2847fb59f979774641ef69c7cc4c52';
+    const staffHash = '87e5f8313b7639d0e4c0eb019c4dc8f4ba4102b87f20ed7b535d8b02d1cb1dc3';
 
     if (user.toLowerCase() === 'admin' && hashedPass === devHash) {
       this.#userRole = 'developer';
