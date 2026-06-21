@@ -4,12 +4,21 @@ import { treatmentService } from './treatmentService.js';
 import { settingsManager } from './settingsManager.js';
 import { ROLES, PERMISSIONS, hasPermission, getPermittedTabs } from './rbac.js';
 
+// --- GLOBAL SAAS BACKEND CONFIGURATION ---
+// If you are hosting on Vercel, you can paste your Google Sheets Web App URL here
+// to connect all users and devices to your sheet backend globally by default.
+const DEFAULT_SHEETS_URL = "";
+
 class AppController {
   #userRole = 'patient';
   #isAdminLoggedIn = false;
 
   get userRole() { return this.#userRole; }
   get isAdminLoggedIn() { return this.#isAdminLoggedIn; }
+
+  getSheetsUrl() {
+    return localStorage.getItem('google_sheets_url') || DEFAULT_SHEETS_URL;
+  }
 
   constructor() {
     this.logsArray = [];
@@ -94,7 +103,7 @@ class AppController {
 
     // Background polling for Google Sheets CRM sync (Admin/Staff side only)
     setInterval(() => {
-      const sheetsUrl = localStorage.getItem('google_sheets_url');
+      const sheetsUrl = this.getSheetsUrl();
       const cid = configService.clinicId || 'default_clinic';
       const userRole = localStorage.getItem(`crm_user_role_${cid}`) || 'patient';
       if (sheetsUrl && userRole !== 'patient') {
@@ -1316,7 +1325,7 @@ class AppController {
   }
 
   async pullDataFromSheets() {
-    const url = localStorage.getItem('google_sheets_url');
+    const url = this.getSheetsUrl();
     if (!url) return;
 
     this.updateSyncBadge('connecting');
@@ -1747,7 +1756,7 @@ class AppController {
     
     // Webhook URL display
     if (webhookUrlInput) {
-      const sheetsUrl = localStorage.getItem('google_sheets_url');
+      const sheetsUrl = this.getSheetsUrl();
       if (sheetsUrl) {
         webhookUrlInput.value = `${sheetsUrl}${sheetsUrl.includes('?') ? '&' : '?'}type=twilioVoice`;
       } else {
@@ -3852,7 +3861,7 @@ class AppController {
     const aiStatus = document.getElementById('diag-status-ai');
 
     // Google Sheets URL
-    const sheetsUrl = localStorage.getItem('google_sheets_url');
+    const sheetsUrl = this.getSheetsUrl();
     if (sheetsStatus) {
       if (sheetsUrl) {
         sheetsStatus.innerText = 'Connected (Web App Active)';
@@ -4375,8 +4384,27 @@ class AppController {
 
   // --- SaaS DYNAMIC INITIALIZATION ---
   async initSaaS() {
+    // 1. Check URL parameters for sheetsUrl configuration
+    const urlParams = new URLSearchParams(window.location.search);
+    let sheetsUrl = urlParams.get('sheetsUrl');
+    if (sheetsUrl) {
+      localStorage.setItem('google_sheets_url', sheetsUrl);
+      // Clean up the URL query parameters bar
+      const cleanSearch = window.location.search.replace(/&?sheetsUrl=[^&]*/g, "").replace(/^\?&/, "?").replace(/\?$/, "");
+      const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + cleanSearch;
+      window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+    } else {
+      sheetsUrl = this.getSheetsUrl();
+    }
+
+    // 2. Enforce Clinic ID requirement
+    const cid = configService.detectClinicId();
+    if (!cid) {
+      this.showClinicSelectorScreen();
+      return;
+    }
+
     this.updateSyncBadge('connecting');
-    const sheetsUrl = localStorage.getItem('google_sheets_url');
     
     try {
       const config = await configService.loadConfig(sheetsUrl);
@@ -4387,8 +4415,6 @@ class AppController {
       
       this.renderDynamicLandingPage(config, treatments);
       
-
-
       settingsManager.bindClinicSettingsForm(config);
       this.bindSaaSEvents();
       
@@ -4405,7 +4431,7 @@ class AppController {
     } finally {
       // Hide full-screen loader after configs have been loaded and UI updated
       const loader = document.getElementById('app-loader');
-      if (loader) {
+      if (loader && loader.querySelector('#selector-clinic-id') === null) {
         loader.classList.add('fade-out');
         setTimeout(() => loader.remove(), 400);
       }
@@ -4584,7 +4610,7 @@ class AppController {
     const saveClinicBtn = document.getElementById('settings-clinic-save-btn');
     if (saveClinicBtn) {
       saveClinicBtn.addEventListener('click', async () => {
-        const url = localStorage.getItem('google_sheets_url');
+        const url = this.getSheetsUrl();
         
         saveClinicBtn.innerText = '⏳ Saving...';
         saveClinicBtn.disabled = true;

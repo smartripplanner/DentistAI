@@ -45,7 +45,7 @@ export class ConfigService {
     if (cachedCid) {
       return cachedCid;
     }
-    return 'default_clinic';
+    return null;
   }
 
   async loadConfig(sheetsUrl) {
