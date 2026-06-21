@@ -1375,7 +1375,7 @@ class AppController {
   }
 
   async syncToSheets(action, data) {
-    const url = localStorage.getItem('google_sheets_url');
+    const url = this.getSheetsUrl();
     if (!url) return;
 
     try {
