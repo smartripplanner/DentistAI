@@ -29,7 +29,9 @@ export class SettingsManager {
     const uniqueUrlInput = document.getElementById('settings-clinic-uniqueURL');
     if (uniqueUrlInput) {
       const cid = config.clinicId || configService.detectClinicId();
-      const sheetsUrl = localStorage.getItem('google_sheets_url') || '';
+      const sheetsUrl = window.app && typeof window.app.getSheetsUrl === 'function' 
+        ? window.app.getSheetsUrl() 
+        : (localStorage.getItem('google_sheets_url') || 'https://script.google.com/macros/s/AKfycbVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec');
       const sheetsParam = sheetsUrl ? `&sheetsUrl=${encodeURIComponent(sheetsUrl)}` : '';
       uniqueUrlInput.value = window.location.origin + window.location.pathname + "?clinicId=" + cid + sheetsParam;
     }

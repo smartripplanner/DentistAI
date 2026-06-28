@@ -1060,7 +1060,7 @@ class AppController {
     const calendarInput = document.getElementById('settings-calendar-id');
     
     // Load existing config
-    const savedUrl = localStorage.getItem('google_sheets_url');
+    const savedUrl = this.getSheetsUrl();
     if (savedUrl) {
       urlInput.value = savedUrl;
       this.updateSyncBadge('synced');
@@ -3795,7 +3795,7 @@ class AppController {
     const diagTestBtn = document.getElementById('diag-btn-test');
     if (diagTestBtn) {
       diagTestBtn.addEventListener('click', () => {
-        const url = localStorage.getItem('google_sheets_url');
+        const url = this.getSheetsUrl();
         this.testSheetsConnection(url);
         this.testSheetsPostConnection(url);
       });
@@ -4760,7 +4760,7 @@ class AppController {
           name, category, price, displayOrder, description, featured, active
         };
 
-        const url = localStorage.getItem('google_sheets_url');
+        const url = this.getSheetsUrl();
         saveTreatmentBtn.innerText = '⏳ Saving...';
         saveTreatmentBtn.disabled = true;
 
@@ -4808,7 +4808,7 @@ class AppController {
 
   async deleteTreatment(id) {
     if (confirm("Are you sure you want to delete this treatment from inventory?")) {
-      const url = localStorage.getItem('google_sheets_url');
+      const url = this.getSheetsUrl();
       try {
         await treatmentService.deleteTreatment(url, configService.clinicId, id);
         this.showSystemAlert('Treatment deleted successfully.', 'info');
