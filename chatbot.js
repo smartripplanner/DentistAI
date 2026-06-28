@@ -1308,7 +1308,7 @@ class ChatbotEngine {
   async syncToGoogleSheets(action, data) {
     const url = window.app && typeof window.app.getSheetsUrl === 'function' 
       ? window.app.getSheetsUrl() 
-      : (localStorage.getItem('google_sheets_url') || 'https://script.google.com/macros/s/AKfycbVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec');
+      : (localStorage.getItem('google_sheets_url') || 'https://script.google.com/macros/s/AKfycbzVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec');
     const cid = configService.clinicId || 'default_clinic';
     
     const logDetails = { 

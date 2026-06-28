@@ -71,6 +71,12 @@ export class ConfigService {
       const res = await fetchConfigData(fetchUrl);
       if (res.status === 'success' && res.data && res.data.config) {
         this.config = { ...localFallback, ...res.data.config };
+        if (res.data.config.receptionistEmail) {
+          localStorage.setItem('receptionist_email', res.data.config.receptionistEmail);
+        }
+        if (res.data.config.calendarId) {
+          localStorage.setItem('google_calendar_id', res.data.config.calendarId);
+        }
       } else {
         this.config = localFallback;
       }

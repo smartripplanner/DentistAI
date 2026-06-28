@@ -11,7 +11,7 @@ export class SettingsManager {
       'workingHours', 'emergencyPhone', 'bookingInstructions', 
       'clinicDescription', 'primaryButtonColor', 'secondaryButtonColor',
       'facebookURL', 'instagramURL', 'youtubeURL', 'reviewLink', 
-      'currency', 'timezone', 'galleryImages'
+      'currency', 'timezone', 'galleryImages', 'receptionistEmail', 'calendarId'
     ];
   }
 
@@ -19,7 +19,14 @@ export class SettingsManager {
     if (!config) return;
 
     this.formFields.forEach(field => {
-      const input = document.getElementById(`settings-clinic-${field}`);
+      let inputId = `settings-clinic-${field}`;
+      if (field === 'receptionistEmail') {
+        inputId = 'settings-receptionist-email';
+      } else if (field === 'calendarId') {
+        inputId = 'settings-calendar-id';
+      }
+      
+      const input = document.getElementById(inputId);
       if (input) {
         input.value = config[field] || '';
       }
@@ -31,7 +38,7 @@ export class SettingsManager {
       const cid = config.clinicId || configService.detectClinicId();
       const sheetsUrl = window.app && typeof window.app.getSheetsUrl === 'function' 
         ? window.app.getSheetsUrl() 
-        : (localStorage.getItem('google_sheets_url') || 'https://script.google.com/macros/s/AKfycbVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec');
+        : (localStorage.getItem('google_sheets_url') || 'https://script.google.com/macros/s/AKfycbzVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec');
       const sheetsParam = sheetsUrl ? `&sheetsUrl=${encodeURIComponent(sheetsUrl)}` : '';
       uniqueUrlInput.value = window.location.origin + window.location.pathname + "?clinicId=" + cid + sheetsParam;
     }
@@ -65,7 +72,14 @@ export class SettingsManager {
     };
 
     this.formFields.forEach(field => {
-      const input = document.getElementById(`settings-clinic-${field}`);
+      let inputId = `settings-clinic-${field}`;
+      if (field === 'receptionistEmail') {
+        inputId = 'settings-receptionist-email';
+      } else if (field === 'calendarId') {
+        inputId = 'settings-calendar-id';
+      }
+      
+      const input = document.getElementById(inputId);
       if (input) {
         values[field] = input.value.trim();
       }

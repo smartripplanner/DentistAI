@@ -7,7 +7,7 @@ import { ROLES, PERMISSIONS, hasPermission, getPermittedTabs } from './rbac.js';
 // --- GLOBAL SAAS BACKEND CONFIGURATION ---
 // If you are hosting on Vercel, you can paste your Google Sheets Web App URL here
 // to connect all users and devices to your sheet backend globally by default.
-const DEFAULT_SHEETS_URL = "https://script.google.com/macros/s/AKfycbVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec";
+const DEFAULT_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzVHD0613YEjCT0fPFmSS4gYrXI2ddjHKBf2mghV8edSi8G6yrjVT3azA8jM7LXxpJG/exec";
 
 class AppController {
   #userRole = 'patient';
@@ -107,7 +107,7 @@ class AppController {
       const cid = configService.clinicId || 'default_clinic';
       const userRole = localStorage.getItem(`crm_user_role_${cid}`) || 'patient';
       if (sheetsUrl && userRole !== 'patient') {
-        this.pullDataFromSheets();
+        this.pullDataFromSheets(true); // Run silently to prevent badge flashing
       }
     }, 8000); // Check every 8 seconds
   }
@@ -1306,11 +1306,13 @@ class AppController {
     }
   }
 
-  async pullDataFromSheets() {
+  async pullDataFromSheets(isSilent = false) {
     const url = this.getSheetsUrl();
     if (!url) return;
 
-    this.updateSyncBadge('connecting');
+    if (!isSilent) {
+      this.updateSyncBadge('connecting');
+    }
     this.logSystemEvent('Sheets Pull Request', 'Pulling database tabs data from Sheets Web App...', { url });
     try {
       const separator = url.indexOf('?') >= 0 ? '&' : '?';
